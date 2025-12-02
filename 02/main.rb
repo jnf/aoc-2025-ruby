@@ -25,13 +25,8 @@ module Solutions
   end
 
   def self.p2
-    blk = -> (num) do
-      str = num.to_s
-      hlf = str.size / 2
-      (1..hlf).any? do |x|
-        str.scan(/.{1,#{x}}/).uniq.count == 1
-      end
-    end
+    r = /^(.+)\1+$/
+    blk = -> (num) { r.match? num.to_s }
     p process(blk).sum
   end
 end
