@@ -1,4 +1,4 @@
-#! /usr/bin/env ruby
+#! /usr/bin/env ruby --yjit
 DAY, part, test = ARGV
 raise "which day?" unless DAY
 TEST = test || "fake"
