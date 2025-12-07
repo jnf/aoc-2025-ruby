@@ -1,4 +1,7 @@
 #! /usr/bin/env ruby --yjit
+
+require 'benchmark'
+
 DAY, part, test = ARGV
 raise "which day?" unless DAY
 TEST = test || "fake"
@@ -9,4 +12,12 @@ puts [DAY, PART, TEST].join(', ')
 require_relative "tools"
 require_relative "./#{DAY}/main"
 
-Solutions.send(PART.to_sym)
+t = Benchmark.measure do
+  Solutions.send(PART.to_sym)
+end
+
+puts 
+puts '-'*50
+puts 'user system total real'
+puts t
+puts '-'*50
