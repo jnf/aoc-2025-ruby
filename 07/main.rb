@@ -1,19 +1,10 @@
 # internal API goes up here
 class GraphBuilder
-  attr_reader :grid, :graph, :exits, :inverse
+  attr_reader :grid, :graph
 
   def initialize(grid)
     @grid = grid
     @graph = build_graph
-    @exits = {}
-    @inverse = graph.reduce({}) do |acc, (k, v)|
-      v.each { |n| acc[n] ||= []; acc[n] << k }
-      acc
-    end
-  end
-
-  def end_nodes
-    graph.values.flatten(1).reject { |n| graph.graph.key? n }.uniq
   end
 
   def find_paths(node, memo = {})
